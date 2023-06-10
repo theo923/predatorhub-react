@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useContext, useState } from "react";
 import Modal from "react-modal";
 
@@ -42,9 +43,17 @@ export const AddBookmarkModal: React.FC<{
   const [name, setName] = useState("");
   const { addBookmark } = useContext(BookmarkContext)!;
 
+  const fetchFavicon = async (url: string) => {
+    const res = await axios.post(`http://127.0.0.1:5000/favicon`, {
+      url,
+    });
+    return res?.data?.favicon_url;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    addBookmark({ url, name });
+    const faviconUrl = await fetchFavicon(url);
+    addBookmark({ url, name, faviconUrl });
     setUrl("");
     setName("");
     closeModal();

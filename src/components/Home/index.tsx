@@ -15,12 +15,13 @@ const HomePage: React.FC = () => {
         <div>
           {bookmarks.map((bookmark, index) => (
             <button
+              className="flex items-center"
               key={index}
               onClick={() => window.open(bookmark.url, "_blank")}
             >
               {bookmark?.faviconUrl && (
                 <img
-                  className="inline-block w-4 h-4 mr-2"
+                  className="inline-block w-6 h-6 mr-2"
                   src={bookmark?.faviconUrl}
                   alt="Favicon"
                 />
