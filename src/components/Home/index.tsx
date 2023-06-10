@@ -1,10 +1,7 @@
 import { useContext } from "react";
-import {
-  AddBookmarkModal,
-  BookmarkContext,
-} from "../../Hooks/Bookmark/Bookmark";
-import { ModalContext } from "../../Hooks/ModalContextHook/ModalContextHook";
-import TopBar from "../TopBar/TopBar";
+import { AddBookmarkModal, BookmarkContext } from "../../Hooks/Bookmark";
+import { ModalContext } from "../../Hooks/ModalContextHook";
+import TopBar from "../TopBar";
 
 const HomePage: React.FC = () => {
   const { modalIsOpen, closeModal } = useContext(ModalContext);
@@ -18,9 +15,16 @@ const HomePage: React.FC = () => {
         <div>
           {bookmarks.map((bookmark, index) => (
             <button
-            key={index}
-            onClick={() => window.open(bookmark.url, "_blank")}
+              key={index}
+              onClick={() => window.open(bookmark.url, "_blank")}
             >
+              {bookmark?.faviconUrl && (
+                <img
+                  className="inline-block w-4 h-4 mr-2"
+                  src={bookmark?.faviconUrl}
+                  alt="Favicon"
+                />
+              )}
               {bookmark.name}
             </button>
           ))}

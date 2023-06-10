@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root"); // Replace '#root' with the querySelector identifying your app root element
@@ -6,6 +6,7 @@ Modal.setAppElement("#root"); // Replace '#root' with the querySelector identify
 type Bookmark = {
   url: string;
   name: string;
+  faviconUrl?: string;
 };
 
 export const BookmarkContext = createContext<
@@ -41,7 +42,7 @@ export const AddBookmarkModal: React.FC<{
   const [name, setName] = useState("");
   const { addBookmark } = useContext(BookmarkContext)!;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     addBookmark({ url, name });
     setUrl("");

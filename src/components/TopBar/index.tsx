@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ModalContext } from "../../Hooks/ModalContextHook/ModalContextHook";
+import { ModalContext } from "../../Hooks/ModalContextHook";
 import Icon from "../../Icon";
 
 const TopBar: React.FC = () => {
