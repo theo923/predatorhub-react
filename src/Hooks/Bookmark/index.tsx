@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root"); // Replace '#root' with the querySelector identifying your app root element
