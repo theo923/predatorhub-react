@@ -1,4 +1,4 @@
-import logo from "./assets/icon.png"; // Make sure the path is correct
+import logo from "../../assets/icon.png"; // Make sure the path is correct
 
 interface IconProps {
   iconClass?: string;
