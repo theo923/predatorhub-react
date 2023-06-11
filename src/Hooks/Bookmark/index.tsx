@@ -44,7 +44,8 @@ export const AddBookmarkModal: React.FC<{
   const { addBookmark } = useContext(BookmarkContext)!;
 
   const fetchFavicon = async (url: string) => {
-    const res = await axios.post(`http://127.0.0.1:5000/favicon`, {
+    console.log(import.meta.env.VITE_API_URL);
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/favicon`, {
       url,
     });
     return res?.data?.favicon_url;
