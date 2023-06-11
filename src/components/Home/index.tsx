@@ -1,11 +1,16 @@
 import { useContext } from "react";
-import { AddBookmarkModal, BookmarkContext } from "../../Hooks/Bookmark";
+import {
+  AddBookmarkModal,
+  BookmarkContext,
+  IBookmark,
+} from "../../Hooks/Bookmark";
 import { ModalContext } from "../../Hooks/ModalContextHook";
 import TopBar from "../TopBar";
 
 const HomePage: React.FC = () => {
   const { modalIsOpen, closeModal } = useContext(ModalContext);
-  const { bookmarks } = useContext(BookmarkContext)!;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const { bookmarks } = useContext(BookmarkContext)! || [];
 
   return (
     <div>
@@ -13,16 +18,16 @@ const HomePage: React.FC = () => {
       <div className="flex justify-center items-center">
         <AddBookmarkModal isOpen={modalIsOpen} closeModal={closeModal} />
         <div>
-          {bookmarks.map((bookmark, index) => (
+          {bookmarks?.map((bookmark: IBookmark, index: number) => (
             <button
               className="flex items-center"
               key={index}
               onClick={() => window.open(bookmark.url, "_blank")}
             >
-              {bookmark?.faviconUrl && (
+              {bookmark?.favicon_url && (
                 <img
                   className="inline-block w-6 h-6 mr-2"
-                  src={bookmark?.faviconUrl}
+                  src={bookmark?.favicon_url}
                   alt="Favicon"
                 />
               )}
